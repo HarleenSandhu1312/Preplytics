@@ -1,4 +1,4 @@
-# PrepLytics v2 — Backend Auth Upgrade
+# PrepLytics — Backend Auth Upgrade
 
 ## What Changed
 
