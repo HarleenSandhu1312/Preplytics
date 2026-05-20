@@ -182,6 +182,11 @@ export default function Dashboard({ onNav }) {
   const allTests = Object.entries(studyData).flatMap(([sub,d])=>(d.miniTests||[]).filter(t=>t.submitted).map(t=>({...t,sub}))).sort((a,b)=>new Date(b.date)-new Date(a.date));
   const lastTest = allTests[0];
   const streak = user?.progress?.streak || 0;
+  const markedDates = storage
+  .getActivityLog()
+  .map(e => (typeof e === 'object' ? e.time : e)?.slice?.(0, 10))
+  .filter(Boolean);
+
 
   const statCards = [
     { Icon:IcoFire,   label:'STUDY STREAK',       val:streak,                          unit:'days', bg:'rgba(249,115,22,0.08)', border:'rgba(249,115,22,0.18)' },
