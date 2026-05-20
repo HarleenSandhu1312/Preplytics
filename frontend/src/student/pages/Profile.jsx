@@ -29,9 +29,7 @@ export default function Profile({ onNav }) {
   const completedTopics = Object.values(studyData).reduce((s, d) => s + ((d.topics || []).filter(t => t.status === 'completed').length), 0);
   const totalTopics     = Object.values(studyData).reduce((s, d) => s + ((d.topics || []).length), 0);
   const actLog = storage.getActivityLog().slice(0, 8);
-  const streak = calcStreakFromDateStrings(
-    storage.getActivityLog().map((item) => item?.time).filter(Boolean)
-  );
+  const streak = user?.progress?.streak ?? 0;
 
   const joinDate = user?.createdAt
     ? new Date(user.createdAt).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })
