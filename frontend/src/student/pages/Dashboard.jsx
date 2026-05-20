@@ -181,7 +181,7 @@ export default function Dashboard({ onNav }) {
   const totalTopics     = Object.values(studyData).reduce((s,d)=>s+(d.topics||[]).length,0);
   const allTests = Object.entries(studyData).flatMap(([sub,d])=>(d.miniTests||[]).filter(t=>t.submitted).map(t=>({...t,sub}))).sort((a,b)=>new Date(b.date)-new Date(a.date));
   const lastTest = allTests[0];
-  const streak = user?.progress?.streak || 0;
+  const streak = user?.streak || 0;
   const markedDates = storage
   .getActivityLog()
   .map(e => (typeof e === 'object' ? e.time : e)?.slice?.(0, 10))

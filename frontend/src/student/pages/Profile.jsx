@@ -3,7 +3,7 @@ import Topbar from '../../shared/Topbar';
 import { useAuth } from '../../context/AuthContext';
 import { useStudy } from '../../context/StudyContext';
 import { storage } from '../../utils/storage';
-import { calcOverall, isCertUnlocked, calcStreakFromDateStrings } from '../../utils/analytics';
+import { calcOverall, isCertUnlocked } from '../../utils/analytics';
 
 /* SVG icons */
 const IcoEdit    = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>;
@@ -29,7 +29,7 @@ export default function Profile({ onNav }) {
   const completedTopics = Object.values(studyData).reduce((s, d) => s + ((d.topics || []).filter(t => t.status === 'completed').length), 0);
   const totalTopics     = Object.values(studyData).reduce((s, d) => s + ((d.topics || []).length), 0);
   const actLog = storage.getActivityLog().slice(0, 8);
-  const streak = user?.progress?.streak ?? 0;
+  const streak = user?.streak || 0;
 
   const joinDate = user?.createdAt
     ? new Date(user.createdAt).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })
