@@ -39,7 +39,6 @@ const UserSchema = new mongoose.Schema(
     semester:    { type: String, default: '' },
     phone:       { type: String, default: '' },
     avatar:      { type: String, default: '' },
-    streak:      { type: Number, default: 0 },
     dailyGoal:   { type: Number, default: 8 },
     lastLogin:   { type: Date },
     isActive:    { type: Boolean, default: true },

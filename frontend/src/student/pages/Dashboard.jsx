@@ -4,7 +4,7 @@ import RightSidebar from '../../shared/RightSidebar';
 import { useAuth } from '../../context/AuthContext';
 import { useStudy } from '../../context/StudyContext';
 import { storage } from '../../utils/storage';
-import { calcOverall, getAlerts, calcCompletionPct, calcLastTestScore, calcStreakFromDateStrings } from '../../utils/analytics';
+import { calcOverall, getAlerts, calcCompletionPct, calcLastTestScore} from '../../utils/analytics';
 
 const IcoFire   = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>;
 const IcoTarget = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>;
@@ -181,8 +181,7 @@ export default function Dashboard({ onNav }) {
   const totalTopics     = Object.values(studyData).reduce((s,d)=>s+(d.topics||[]).length,0);
   const allTests = Object.entries(studyData).flatMap(([sub,d])=>(d.miniTests||[]).filter(t=>t.submitted).map(t=>({...t,sub}))).sort((a,b)=>new Date(b.date)-new Date(a.date));
   const lastTest = allTests[0];
-  const markedDates = storage.getActivityLog().map(e => (typeof e === 'object' ? e.time : e)?.slice?.(0, 10)).filter(Boolean);
-  const streak = calcStreakFromDateStrings(markedDates);
+  const streak = user?.progress?.streak || 0;
 
   const statCards = [
     { Icon:IcoFire,   label:'STUDY STREAK',       val:streak,                          unit:'days', bg:'rgba(249,115,22,0.08)', border:'rgba(249,115,22,0.18)' },
