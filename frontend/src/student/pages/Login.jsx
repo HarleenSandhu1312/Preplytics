@@ -44,8 +44,7 @@ export default function Login({ onGoRegister, onBack, onSuccess }) {
         <div className="auth-creds">
           <div className="auth-creds-title">Demo Credentials</div>
           <p>
-            <strong>Admin:</strong> admin@preplytics.com / admin123<br />
-            <strong>Student:</strong> Register a new account
+            <strong>Doesn't have an acoount ?</strong> Register a new account
           </p>
         </div>
       </div>
