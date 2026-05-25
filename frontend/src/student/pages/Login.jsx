@@ -42,9 +42,9 @@ export default function Login({ onGoRegister, onBack, onSuccess }) {
           <div className="auth-feat">PDF Notes Library</div>
         </div>
         <div className="auth-creds">
-          <div className="auth-creds-title">Demo Credentials</div>
+          <div className="auth-creds-title">Doesn't have an acoount ?</div>
           <p>
-            <strong>Doesn't have an acoount ?</strong> Register a new account
+            <strong>Register a new account</strong> 
           </p>
         </div>
       </div>
